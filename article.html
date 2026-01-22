@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="seo-title">Loading... | Collision Care Center</title>
+    <meta name="description" id="seo-desc" content="Professional repair advice.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #fff; }
+        h1, h2, .serif { font-family: 'Playfair Display', serif; }
+        /* Style des paragraphes pour la lisibilité SEO++ */
+        #article-body p { margin-bottom: 1.8rem; line-height: 1.9; color: #334155; font-size: 1.15rem; }
+        #article-body h2 { font-size: 2rem; font-weight: 900; margin-top: 2.5rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif; }
+        
+        .ad-slot { background: #f9fafb; border: 1px solid #f3f4f6; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 3rem 0; }
+        .ad-label { position: absolute; top: 2px; left: 5px; font-size: 8px; font-weight: 800; color: #d1d5db; text-transform: uppercase; }
+        .special-bg { background: #1e3a8a; }
+        .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+    </style>
+</head>
+<body class="text-slate-900 bg-white">
+
+    <header class="bg-white border-b sticky top-0 z-50 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-black serif uppercase tracking-tighter">COLLISION <span class="text-red-600">CARE</span> CENTER</a>
+            <a href="index.html" class="text-[10px] font-bold uppercase tracking-widest bg-slate-100 px-3 py-1 rounded hover:bg-red-600 hover:text-white transition">← Back to Magazine</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 max-w-4xl">
+        <!-- ADSENSE TOP -->
+        <div class="ad-slot w-full h-24 mb-12">
+            <span class="ad-label">Sponsored / Leaderboard</span>
+            <div class="text-slate-300 italic text-[10px]">Advertisement Space</div>
+        </div>
+
+        <!-- ARTICLE HEADER -->
+        <div id="article-header"></div>
+
+        <!-- IMAGE PRINCIPALE -->
+        <div id="article-image"></div>
+
+        <!-- CONTENU DE L'ARTICLE (Injecté ici) -->
+        <div id="article-body" class="prose prose-xl max-w-none"></div>
+
+        <!-- NAVIGATION PRÉCÉDENT / SUIVANT -->
+        <nav class="border-y border-slate-100 py-12 my-16 flex flex-col md:flex-row justify-between gap-8" id="article-nav"></nav>
+
+        <!-- MORE TO READ -->
+        <section class="mt-20">
+            <div class="flex items-center justify-between mb-8 border-b-2 border-slate-900 pb-2">
+                <h3 class="text-2xl font-black uppercase italic tracking-tighter">More to Read</h3>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Recommended</span>
+            </div>
+            <div id="random-articles" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+        </section>
+
+        <!-- ADSENSE BOTTOM -->
+        <div class="ad-slot w-full h-64 mt-20">
+            <span class="ad-label">Sponsored / Rectangle</span>
+            <div class="text-slate-300 italic text-[10px]">Advertisement Space</div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-950 text-white pt-20 pb-8 mt-20">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-white/5 pb-12 mb-8 text-left">
+            <div>
+                <h2 class="font-bold text-xl mb-4 serif">Collision Care Center</h2>
+                <p class="text-slate-400 text-sm leading-relaxed">The premier digital magazine for collision repair professionals seeking safety and excellence.</p>
+            </div>
+            <div>
+                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-6">Resources</h3>
+                <ul class="text-sm space-y-3 text-slate-400">
+                    <li><a href="article.html?s=adas-guide" class="hover:text-red-500 transition">ADAS Guide</a></li>
+                    <li><a href="article.html?s=claim-estimation" class="hover:text-red-500 transition">Claim Pro</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-6">Legal</h3>
+                <ul class="text-sm space-y-3 text-slate-400">
+                    <li><a href="article.html?s=legal-notices" class="hover:text-red-500 transition">Legal Notices</a></li>
+                    <li><a href="article.html?s=privacy-policy" class="hover:text-red-500 transition">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-6">Follow</h3>
+                <div class="flex space-x-4 text-xs text-slate-500 uppercase font-bold">
+                    <span>FB</span><span>TW</span><span>YT</span>
+                </div>
+            </div>
+        </div>
+        <p class="text-center text-[10px] text-slate-700 uppercase tracking-widest">© 2024 collisioncarecenter.com</p>
+    </footer>
+
+    <script src="articles.js"></script>
+    <script>
+        const slug = new URLSearchParams(window.location.search).get('s');
+        const currentIndex = ARTICLES.findIndex(x => x.slug === slug);
+        const a = ARTICLES[currentIndex];
+
+        // --- GÉNÉRATEUR DE PUB ---
+        function getAdHtml(label) {
+            return `
+                <div class="ad-slot w-full h-64 my-12">
+                    <span class="ad-label">Sponsored / ${label}</span>
+                    <div class="text-slate-300 italic text-[10px]">Advertisement Space</div>
+                </div>
+            `;
+        }
+
+        // --- INJECTEUR INTELLIGENT DE PUB ---
+        function injectMidArticleAd(content) {
+            // On vérifie si le contenu est déjà en HTML ou en texte brut
+            let paragraphs = [];
+            
+            if (content.includes('</p>')) {
+                // Si c'est du HTML (venant de l'éditeur pro)
+                paragraphs = content.split('</p>').filter(p => p.trim() !== "");
+                const mid = Math.floor(paragraphs.length / 2);
+                
+                if (paragraphs.length <= 1) return content + getAdHtml('Mid-Article');
+
+                return paragraphs.map((p, i) => {
+                    let text = p + '</p>';
+                    if (i === mid) text += getAdHtml('Mid-Article');
+                    return text;
+                }).join('');
+
+            } else {
+                // Si c'est du texte brut avec des retours à la ligne (\n)
+                paragraphs = content.split('\n').filter(p => p.trim() !== "");
+                const mid = Math.floor(paragraphs.length / 2);
+                
+                return paragraphs.map((p, i) => {
+                    let text = `<p>${p}</p>`;
+                    if (i === mid) text += getAdHtml('Mid-Article');
+                    return text;
+                }).join('');
+            }
+        }
+
+        if (a) {
+            document.title = a.title + " | Collision Care Center";
+            document.getElementById('seo-desc').content = a.excerpt || a.title;
+
+            // Rendu du Header de l'article
+            document.getElementById('article-header').innerHTML = `
+                <div class="mb-10 text-center md:text-left">
+                    <span class="text-red-600 font-bold uppercase text-[10px] tracking-[0.2em] border-b-2 border-red-600 pb-1">${a.category.replace('-', ' ')}</span>
+                    <h1 class="text-4xl md:text-6xl font-black serif text-slate-900 mt-8 leading-tight">${a.title}</h1>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mt-6 italic">By ${a.author || 'Collision Care Admin'} • ${a.date || '2024'}</p>
+                </div>
+            `;
+
+            // Rendu Image
+            if (a.image) {
+                document.getElementById('article-image').innerHTML = `
+                    <img src="${a.image}" alt="${a.title}" class="w-full h-[300px] md:h-[550px] object-cover rounded-[2rem] shadow-2xl mb-16">
+                `;
+            }
+
+            // Rendu Corps de l'article avec Injection Pub
+            document.getElementById('article-body').innerHTML = injectMidArticleAd(a.content);
+
+            // Rendu Navigation (Prev/Next)
+            const prev = ARTICLES[currentIndex - 1];
+            const next = ARTICLES[currentIndex + 1];
+            if (prev || next) {
+                document.getElementById('article-nav').innerHTML = `
+                    <div class="flex-1">${prev && prev.id ? `<p class="text-[10px] font-bold text-slate-400 uppercase mb-2">Previous</p><a href="article.html?s=${prev.slug}" class="text-lg font-black serif hover:text-red-600 transition line-clamp-1">← ${prev.title}</a>` : ''}</div>
+                    <div class="flex-1 text-right border-t md:border-t-0 md:border-l border-slate-100 pt-8 md:pt-0 md:pl-8">${next && next.id ? `<p class="text-[10px] font-bold text-slate-400 uppercase mb-2">Next Up</p><a href="article.html?s=${next.slug}" class="text-lg font-black serif hover:text-red-600 transition line-clamp-1">${next.title} →</a>` : ''}</div>
+                `;
+            }
+
+            // Rendu More to Read
+            const others = ARTICLES.filter(x => x.slug !== slug && x.id).sort(() => 0.5 - Math.random()).slice(0, 3);
+            document.getElementById('random-articles').innerHTML = others.map(ra => `
+                <div class="group cursor-pointer" onclick="location.href='article.html?s=${ra.slug}'">
+                    <div class="relative overflow-hidden rounded-2xl mb-4 h-48 shadow-sm"><img src="${ra.image}" alt="${ra.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700"></div>
+                    <span class="text-red-600 text-[9px] font-bold uppercase tracking-widest">${ra.category.replace('-', ' ')}</span>
+                    <h4 class="font-bold text-lg mt-2 serif group-hover:text-red-600 transition leading-snug">${ra.title}</h4>
+                </div>
+            `).join('');
+
+        } else { location.href = "index.html"; }
+    </script>
+</body>
+</html>

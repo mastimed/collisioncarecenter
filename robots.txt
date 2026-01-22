@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Emplacement de votre sitemap
+Sitemap: https://collisioncarecenter.com/sitemap.xml

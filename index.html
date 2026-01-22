@@ -1,40 +1,340 @@
-
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Collision Care Center | Magazine Automobile Pro</title>
-    <meta name="description" content="Magazine spécialisé dans la carrosserie, la sécurité et l'entretien automobile.">
-    
-    <!-- Tailwind & Fonts -->
+    <title>Collision Care Center | Professional Auto Body Magazine</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: #fdfdfd; }
         h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
-        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-        .animate-fade-in { animation: fadeIn 0.4s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .ad-slot { background: #f9fafb; border: 1px solid #f3f4f6; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .ad-label { position: absolute; top: 2px; left: 5px; font-size: 8px; font-weight: 800; color: #d1d5db; text-transform: uppercase; letter-spacing: 0.1em; }
     </style>
+    <!-- Quill Editor Styles and JS -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
-    <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@19.0.0",
-    "react-dom": "https://esm.sh/react-dom@19.0.0",
-    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/"
-  }
-}
-</script>
+<style>
+    /* Style personnalisé pour l'éditeur */
+    #editor-container { height: 400px; background: white; border-radius: 0 0 12px 12px; }
+    .ql-toolbar { border-radius: 12px 12px 0 0; background: #f8fafc; }
+    .ql-container { font-size: 16px; font-family: 'Inter', sans-serif; }
+</style>
 </head>
-<body class="bg-slate-50 text-slate-900">
-    <div id="root"></div>
-    <!-- Chargement du fichier unique -->
-    <script type="module" src="./index.tsx"></script>
+<body class="text-slate-900">
+
+    <!-- TOP BAR -->
+    <div class="bg-slate-950 text-white py-2 text-[10px] font-bold uppercase tracking-[0.2em] border-b border-white/10">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <span>Collision Excellence • Safety Innovation</span>
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-blue-500 transition">Facebook</a>
+                <a href="#" class="hover:text-blue-400 transition">Twitter</a>
+                <a href="#" class="hover:text-red-600 transition">YouTube</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="bg-white border-b sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-4 py-5 flex justify-between items-center">
+            <a href="index.html" class="block">
+                <h1 class="text-2xl font-black text-slate-900 tracking-tighter uppercase">COLLISION <span class="text-red-600">CARE</span> CENTER</h1>
+                <p class="text-[9px] uppercase font-bold text-slate-400 tracking-widest">Professional Bodywork Magazine</p>
+            </a>
+            <nav id="nav" class="hidden lg:flex items-center space-x-6 text-[11px] font-bold uppercase text-slate-500">
+                <!-- Injected via JS -->
+            </nav>
+            <button onclick="location.href='index.html?view=editor'" class="bg-[#1e3a8a] text-white px-4 py-2 rounded text-[10px] font-black uppercase tracking-wider hover:bg-blue-800 transition">Publish</button>
+        </div>
+    </header>
+
+    <main id="app" class="container mx-auto px-4 py-12">
+        <!-- Contenu dynamique -->
+    </main>
+
+    <footer class="bg-slate-950 text-white pt-20 pb-8 mt-20">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-16 border-b border-white/5 pb-16 mb-8 text-left">
+            <div>
+                <h2 class="font-bold text-xl mb-6 serif text-white">Collision Care Center</h2>
+                <p class="text-slate-400 text-sm leading-relaxed text-left">The premier digital magazine for collision repair professionals seeking safety and excellence.</p>
+            </div>
+            <div>
+                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-6">Resources</h3>
+                <ul class="text-sm space-y-3 text-slate-400">
+                    <li><a href="article.html?s=adas-guide" class="hover:text-red-500 transition">ADAS Guide</a></li>
+                    <li><a href="article.html?s=claim-estimation" class="hover:text-red-500 transition">Claim Pro</a></li>
+                    <li><a href="article.html?s=eco-friendly-paint" class="hover:text-red-500 transition">Eco Paint</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-6">Company</h3>
+                <ul class="text-sm space-y-3 text-slate-400">
+                    <li><a href="article.html?s=legal-notices" class="hover:text-red-500">Legal Notices</a></li>
+                    <li><a href="article.html?s=privacy-policy" class="hover:text-red-500">Privacy Policy</a></li>
+                    <li><a href="article.html?s=cookies" class="hover:text-red-500">Cookie Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-6 text-left">Newsletter</h3>
+                <div class="flex">
+                    <input type="email" placeholder="Email..." class="bg-slate-900 border border-white/10 px-4 py-2 w-full text-sm outline-none transition">
+                    <button class="bg-red-600 px-5 py-2 font-bold text-xs uppercase text-white">Join</button>
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-[10px] text-slate-600 tracking-[0.3em] uppercase">
+            © 2024 collisioncarecenter.com • Built for Excellence
+        </div>
+    </footer>
+
+    <!-- CHARGEMENT DES DONNÉES -->
+    <script src="articles.js"></script>
+
+    <script>
+        // On attend que le DOM et articles.js soient prêts
+        window.addEventListener('DOMContentLoaded', () => {
+            const app = document.getElementById('app');
+            const nav = document.getElementById('nav');
+            const urlParams = new URLSearchParams(window.location.search);
+            const activeCat = urlParams.get('cat');
+            const view = urlParams.get('view');
+
+            // --- SÉCURITÉ ADMIN ---
+            const ADMIN_TOKEN = "YWRtaW4yMDI0"; // admin2024
+            function checkAdminAccess() {
+                if (sessionStorage.getItem('isAdmin') === 'true') return true;
+                const password = prompt("Restricted Area. Enter Admin Password:");
+                if (btoa(password) === ADMIN_TOKEN) {
+                    sessionStorage.setItem('isAdmin', 'true');
+                    return true;
+                } else {
+                    alert("Access denied.");
+                    window.location.href = "index.html";
+                    return false;
+                }
+            }
+
+            // --- NAVIGATION ---
+            if (typeof CATEGORIES !== 'undefined') {
+                CATEGORIES.forEach(c => {
+                    nav.innerHTML += `<a href="index.html?cat=${c.slug}" class="${activeCat === c.slug ? 'text-red-600 border-b-2 border-red-600' : ''} hover:text-red-600 transition-colors pb-1 mr-4">${c.name}</a>`;
+                });
+            }
+
+            function renderAd(size, label) {
+                return `<div class="ad-slot ${size} mx-auto my-12"><span class="ad-label">Sponsored / ${label}</span><div class="text-slate-300 font-medium italic text-[10px]">Advertisement Space</div></div>`;
+            }
+
+            // --- RENDU ACCUEIL ---
+            function renderHome() {
+                if (typeof ARTICLES === 'undefined' || ARTICLES.length === 0) {
+                    app.innerHTML = "<p class='text-center py-20'>No articles found. Please check articles.js</p>";
+                    return;
+                }
+
+                let list = activeCat ? ARTICLES.filter(a => a.category === activeCat) : ARTICLES;
+                const featured = list.find(a => a.featured) || list[0];
+                
+                let html = `
+                    ${renderAd('w-full h-24 max-w-4xl', 'Leaderboard')}
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-24 text-left">
+                        <div class="lg:col-span-2 relative h-[550px] rounded-3xl overflow-hidden shadow-2xl cursor-pointer group" onclick="location.href='article.html?s=${featured.slug}'">
+                            <img src="${featured.image}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-1000">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent p-10 flex flex-col justify-end text-white">
+                                <span class="bg-red-600 px-3 py-1 text-[10px] font-bold w-fit mb-4 uppercase rounded">Featured Story</span>
+                                <h2 class="text-5xl font-black serif leading-tight">${featured.title}</h2>
+                                <p class="mt-4 text-slate-300 line-clamp-2 max-w-xl">${featured.excerpt}</p>
+                            </div>
+                        </div>
+                        <div class="space-y-8 text-left">
+                            <h3 class="font-black border-b-4 border-red-600 w-fit pb-1 uppercase text-sm">Latest Headlines</h3>
+                            ${list.slice(1, 6).map(a => `
+                                <div class="flex gap-4 cursor-pointer group items-center" onclick="location.href='article.html?s=${a.slug}'">
+                                    <img src="${a.image}" class="w-16 h-16 object-cover rounded-xl shadow-sm flex-shrink-0">
+                                    <div>
+                                        <h4 class="font-bold text-xs leading-tight group-hover:text-red-600 transition">${a.title}</h4>
+                                        <p class="text-[9px] text-slate-400 mt-2 font-bold uppercase">${a.category.replace('-', ' ')}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+
+                // Grilles par catégories
+                if (!activeCat) {
+                    CATEGORIES.forEach(c => {
+                        const group = ARTICLES.filter(a => a.category === c.slug).slice(0, 3);
+                        html += `
+                            <section class="mb-24 text-left">
+                                <div class="flex justify-between items-end mb-10 border-b border-slate-200 pb-4">
+                                    <h2 class="text-4xl font-black uppercase tracking-tighter serif">${c.name}</h2>
+                                    <a href="index.html?cat=${c.slug}" class="text-[10px] font-black uppercase text-red-600 hover:tracking-widest transition-all">Explore Category →</a>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                                    ${group.map(a => `
+                                        <div class="cursor-pointer group" onclick="location.href='article.html?s=${a.slug}'">
+                                            <div class="relative overflow-hidden rounded-2xl mb-6 h-56 shadow-sm">
+                                                <img src="${a.image}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                                            </div>
+                                            <h3 class="font-bold text-xl leading-tight group-hover:text-red-600 transition serif mb-3 text-left">${a.title}</h3>
+                                            <p class="text-xs text-slate-500 leading-relaxed line-clamp-2 text-left">${a.excerpt}</p>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </section>
+                        `;
+                    });
+                } else {
+                    // Si une catégorie est sélectionnée, on affiche tout
+                    html += `
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                            ${list.map(a => `
+                                <div class="cursor-pointer group" onclick="location.href='article.html?s=${a.slug}'">
+                                    <div class="relative overflow-hidden rounded-2xl mb-6 h-56 shadow-sm">
+                                        <img src="${a.image}" class="w-full h-full object-cover">
+                                    </div>
+                                    <h3 class="font-bold text-xl leading-tight group-hover:text-red-600 transition serif mb-3 text-left">${a.title}</h3>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+
+                app.innerHTML = html;
+            }
+
+            // --- ROUTAGE ---
+            // --- SECTION PUBLISH / EDITOR PROFESSIONNEL ---
+if (view === 'editor') {
+    if (checkAdminAccess()) {
+        app.innerHTML = `
+            <div class="max-w-6xl mx-auto py-12 px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    <!-- COLONNE DE GAUCHE : ÉDITEUR -->
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="bg-white p-8 rounded-3xl border shadow-xl">
+                            <h2 class="text-3xl font-black mb-8 serif uppercase italic border-b-4 border-blue-900 w-fit">Create Article</h2>
+                            
+                            <div class="space-y-4">
+                                <input id="t" class="w-full p-4 text-lg font-bold border rounded-xl outline-none focus:ring-2 focus:ring-blue-900" placeholder="Enter Catchy Title...">
+                                
+                                <div class="grid grid-cols-2 gap-4">
+                                    <select id="c" class="p-4 border rounded-xl outline-none focus:ring-2 focus:ring-blue-900 bg-white">
+                                        <option value="" disabled selected>Category</option>
+                                        ${CATEGORIES.map(cat => `<option value="${cat.slug}">${cat.name}</option>`).join('')}
+                                    </select>
+                                    <input id="img-url" class="p-4 border rounded-xl outline-none focus:ring-2 focus:ring-blue-900" placeholder="Main Image URL (Unsplash...)">
+                                </div>
+
+                                <input id="excerpt-field" class="w-full p-4 border rounded-xl outline-none focus:ring-2 focus:ring-blue-900" placeholder="SEO Summary (Excerpt)...">
+
+                                <!-- L'ÉDITEUR RICHE -->
+                                <div id="editor-container"></div>
+
+                                <button id="genBtn" class="w-full bg-[#1e3a8a] text-white py-5 rounded-xl font-black uppercase text-sm tracking-widest shadow-xl hover:bg-blue-800 transition transform active:scale-95">
+                                    Finalize & Generate Code
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COLONNE DE DROITE : RÉSULTATS & SITEMAP -->
+                    <div class="space-y-6">
+                        <!-- CODE GÉNÉRÉ -->
+                        <div class="bg-slate-900 text-white p-8 rounded-3xl shadow-xl border border-white/10">
+                            <h2 class="text-xl font-black mb-4 uppercase text-blue-400">Article Code</h2>
+                            <p class="text-[10px] text-slate-400 mb-4 uppercase">Copy this into your articles.js file</p>
+                            <pre id="code-output" class="hidden h-64 bg-black/50 text-green-400 p-4 text-[10px] rounded-xl overflow-x-auto border border-white/5"></pre>
+                            <button id="copyBtn" class="hidden mt-2 w-full text-[10px] bg-white/10 py-2 rounded uppercase font-bold hover:bg-white/20">Copy to Clipboard</button>
+                        </div>
+
+                        <!-- SITEMAP -->
+                        <div class="bg-red-900 text-white p-8 rounded-3xl shadow-xl">
+                            <h2 class="text-xl font-black mb-4 uppercase">SEO Tools</h2>
+                            <button id="siteBtn" class="w-full bg-black/30 hover:bg-black/50 text-white py-3 rounded-xl font-bold uppercase text-[10px] tracking-widest transition">Update Sitemap.xml</button>
+                            <textarea id="sitemap-output" class="hidden w-full h-48 bg-black/50 text-red-200 mt-4 p-4 text-[10px] rounded-xl font-mono border-none outline-none"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        `;
+
+        // INITIALISATION DE QUILL
+        var quill = new Quill('#editor-container', {
+            modules: {
+                toolbar: [
+                    [{ header: [1, 2, 3, false] }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    ['blockquote', 'code-block'],
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    ['link', 'image'],
+                    ['clean']
+                ]
+            },
+            placeholder: 'Compose your automotive insight...',
+            theme: 'snow'
+        });
+
+        // LOGIQUE GÉNÉRATION CODE ARTICLE
+        document.getElementById('genBtn').addEventListener('click', () => {
+            const title = document.getElementById('t').value;
+            const cat = document.getElementById('c').value;
+            const img = document.getElementById('img-url').value || "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3";
+            const excerpt = document.getElementById('excerpt-field').value;
+            const body = quill.root.innerHTML; // On récupère le vrai HTML
+            
+            if(!title || !cat) { alert("Please fill Title and Category"); return; }
+
+            const slug = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+            const date = new Date().toISOString().split('T')[0];
+
+            const code = `{
+    slug: "${slug}",
+    category: "${cat}",
+    title: "${title}",
+    date: "${date}",
+    author: "Collision Care Admin",
+    excerpt: "${excerpt.replace(/"/g, "'")}",
+    image: "${img}",
+    content: \`${body}\`
+},`;
+
+            const out = document.getElementById('code-output');
+            out.innerText = code;
+            out.classList.remove('hidden');
+            document.getElementById('copyBtn').classList.remove('hidden');
+        });
+
+        // BOUTON COPIER
+        document.getElementById('copyBtn').addEventListener('click', () => {
+            const text = document.getElementById('code-output').innerText;
+            navigator.clipboard.writeText(text);
+            alert("Code copied to clipboard!");
+        });
+
+        // LOGIQUE SITEMAP
+        document.getElementById('siteBtn').addEventListener('click', () => {
+            const domain = "https://collisioncarecenter.com";
+            let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+            ARTICLES.forEach(a => {
+                xml += `  <url><loc>${domain}/article.html?s=${a.slug}</loc></url>\n`;
+            });
+            xml += `</urlset>`;
+            const output = document.getElementById('sitemap-output');
+            output.value = xml;
+            output.classList.remove('hidden');
+        });
+    }
+} else {
+                renderHome();
+            }
+        });
+    </script>
 </body>
 </html>
